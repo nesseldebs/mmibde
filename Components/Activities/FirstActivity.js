@@ -33,7 +33,7 @@ export default class Fisrt extends React.Component {
   render ()  {
 
     return (
-      <ImageBackground source={require('../../assets/fondecran.png')} style={{width: '100%', height: '100%'}}>
+      <ImageBackground source={require('../../assets/bg.jpg')} style={{width: '100%', height: '100%'}}>
 
       <View style = { firstStyle.container }>
           <View style = { { justifyContent : 'center' , alignItems : 'center' } }>
