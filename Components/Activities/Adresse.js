@@ -9,16 +9,72 @@ import {
 
        } from 'react-native'
 
-import {TextInput} from 'react-native-paper'
+import { TextInput } from 'react-native-paper'
+
+import firebase from '../../Data/FireBase.js'
+
 //<div>Icons made by <a href="https://www.flaticon.com/authors/picol" title="Picol">Picol</a> from <a href="https://www.flaticon.com/"
 //<div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a></div>
 
 export default class Adresse extends React.Component {
 
 
-  connect = () => {
+  sendToDatabase = () => {
+
+    var ref = firebase.database().ref('user');
+
+    let data = {
+      nom :this.state.nom,
+      prenom:this.state.prenom,
+      email:this.state.adresse,
+      mdp:this.state.mdp,
+    }
+
+    ref.push(data);
 
     this.props.navigation.navigate("BottomNavigation")
+  }
+
+  sentToUserManager = (email,password) => {
+
+   firebase.auth().createUserWithEmailAndPassword(email, password) // On envoie les informations vers le gestionnaires des utilisateurs
+   console.log('Sending data to manager ....');
+   this.sendToDatabase();
+  }
+
+  verificationMotDepasse () {
+   // Vérifie que les deux mots de passes sont identiques
+   if (this.state.mdp === this.state.confirmation) {
+       console.log('returning true ...');
+     return true;
+   }
+
+   console.log('returning false ...');
+   return false;
+ }
+
+  connect = () => {
+
+    // On vérifie que les mots de passe coincide
+    let conf = this.verificationMotDepasse();
+
+    if (conf === true ) {
+      // S'ils coincident On envoie les données vers la base de données
+      // On envoie mtn dans le manager
+      this.sentToUserManager(this.state.adresse.toString() , this.state.mdp.toString ());
+    }else{
+      // Afficher un lessage d'erreur
+    }
+  }
+
+  componentDidMount () {
+
+    // On recupère le nom et le prénom de la navigation
+    this.setState({
+      nom : this.props.navigation.state.params.nom,
+      prenom : this.props.navigation.state.params.prenom,
+    })
+
   }
 
   constructor (props) {
@@ -26,11 +82,11 @@ export default class Adresse extends React.Component {
 
     this.state = {
 
-      nom : null,
-      prenom : null,
-      adresse : null,
-      motDePasse : null,
-      confirmation : null,
+      nom : "" ,
+      prenom : "" ,
+      adresse : "" ,
+      mdp :"" ,
+      confirmation : "" ,
     }
   }
 
@@ -39,14 +95,29 @@ export default class Adresse extends React.Component {
       <ScrollView contentContainerStyle = { signStyle.mainContainer }>
 
             <View >
-              <TextInput label='Adresse mail' mode="outlined"
+              <TextInput label='Adresse mail'
+                         mode="flat"
+                         placeholder = "Ecrire l'adresse email ..."
+                         value = { this.state.adresse }
+                         onChangeText = { (text) => { this.setState ({
+                           adresse : text
+                         })} }
+
                 />
-                <TextInput label='Mot de passe' mode="outlined"
+                <TextInput label='Mot de passe'
+                           mode="flat"
+                           secureTextEntry={true}
+                           placeholder = "Rentrer vote mot de passe ..."
+                           value = { this.state.mdp }
+                           onChangeText = { (text) => { this.setState ({
+                             mdp : text,
+                           })}}
                   />
                   <TextInput label='Confirmation'
-                              mode="outlined"
+                              mode="flat"
+                              secureTextEntry={true}
+                              placeholder = "Confirmation du mot de passe ..."
                               value = { this.state.confirmation }
-
                               onChangeText = { (text) => { this.setState ({
                                 confirmation  : text,
                               }
@@ -66,7 +137,7 @@ const signStyle = StyleSheet.create ({
   mainContainer : {
   flex:1  ,
   padding:10,
-
+  justifyContent : 'center'
   },
   boutonStyle : {
     backgroundColor : '#8b2938',

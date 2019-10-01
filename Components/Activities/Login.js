@@ -10,6 +10,7 @@ export default class Login extends React.Component {
 
     console.log("on à appuyer");
 
+    // Firebase va vérifier que l'email et le mot de passe coinside avec ce qu'il y a ecrit
     firebase.auth().signInWithEmailAndPassword(email, password).then( () => {
 
       this.setState ({
@@ -66,28 +67,26 @@ export default class Login extends React.Component {
             <View style = { loginStyle.inputTextWithText }>
               <TextInput
                 label='Pseudo'
-                mode="outlined"
-                underlineColorAndroid='transparent'
-                selectionColor="white"
-                placeholderTextColor="#ffffffDD"
-                theme={{ colors: { placeholder: 'white', text: 'white', primary: 'blue'}}}
+                mode="flat"
+                placeholder = "Ecrire votre email..."
                 value = { this.state.mail }
                 onChangeText = { (text) =>  this.setState ({
                   email : text,
                 })}
-
-
               />
             </View>
 
             <View style = { loginStyle.inputTextWithText }>
               <TextInput
                 label='Mot de passe'
-                mode="outlined"
+                mode="flat"
                 onChangeText = { (text) =>  this.setState ({
                   mdp : text,
                 }) }
+                placeholder = "Ecrire votre mdp ..."
                 value = { this.state.mdp }
+                secureTextEntry={true}
+                autoCapitalize =  "none"
               />
             </View>
 
@@ -106,13 +105,15 @@ const loginStyle = StyleSheet.create({
 
   container : {
     flex : 1,
+    justifyContent : "center",
   },
   inputTextWithText : {
 
     flexDirection : 'column',
+    marginBottom : 10,
   },
   logInStyle : {
-    backgroundColor : '#8b2938',
+    backgroundColor : '#c63631',
     height : 50,
     justifyContent : 'center',
     alignItems : 'center',

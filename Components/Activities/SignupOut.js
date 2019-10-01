@@ -5,7 +5,7 @@ import {
          StyleSheet ,
          Image  ,
          TouchableOpacity,
-         ScrollView
+         ScrollView,
 
        } from 'react-native'
 
@@ -15,19 +15,43 @@ import {
 export default class SignUp extends React.Component {
 
 
+  verification = () => {// Verifie que les deux
 
-  passToNext = () => {
+   var prenomText = this.state.prenom.length;
+   var nomText = this.state.nom.length;
 
-      this.props.navigation.navigate("Adresse")
-  }
+   if ( nomText != 0 &&  prenomText != 0 ) {
+
+     return true;
+   }else {
+     return false;
+   }
+ }
+
+ passToNext = () => {
+
+    let bool = this.verification();
+
+    if (bool) {// Si les vérification sont faites :
+
+      this.props.navigation.navigate("Adresse" , { nom : this.state.nom , prenom : this.state.prenom } )// il faut faire passer
+
+    }else {//Sinon (nesrine sait quoi faire )
+      // il faut mettre un warning ici
+      // Message disant qu'il fau remplir tout les champs
+    }
+}
+
 
   //FonctionAppeller à chaque changement de text --->
 
   constructor (props) {
     super (props )
 
-    this.nom = null;
-    this.prenom = null;
+    this.state = {
+      nom : "",
+      prenom : "",
+    }
   }
 
   render () {
@@ -45,12 +69,21 @@ export default class SignUp extends React.Component {
         <View style = { { flex : 1} }>
           <TextInput
               label = 'Nom'
-              callBackFunction = { (text) => { console.log('coucou'); } }
-              mode="outlined"
+              onChangeText = { (text) => { this.setState ({
+                nom : text,
+              }) } }
+              placeholder = "Ecrire votre nom ...."
+              mode="flat"
+              value = { this.state.nom }
           />
           <TextInput
               label = 'Prénom'
-              mode="outlined"
+              onChangeText = { (text) =>  { this.setState ({
+                prenom : text
+              }) } }
+              placeholder = "Ecrire votre prénom ..."
+              mode="flat"
+              value = { this.state.prenom }
           />
 
             <TouchableOpacity style = { signStyle.boutonStyle } onPress = { () => this.passToNext () }>
