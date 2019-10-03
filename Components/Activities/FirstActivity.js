@@ -33,7 +33,7 @@ export default class Fisrt extends React.Component {
   render ()  {
 
     return (
-      <ImageBackground source={require('../../assets/fondecran.png')} style={{width: '100%', height: '100%'}}>
+      <ImageBackground source={require('../../assets/bg.jpg')} style={{width: '100%', height: '100%'}}>
 
       <View style = { firstStyle.container }>
           <View style = { { justifyContent : 'center' , alignItems : 'center' } }>
@@ -71,22 +71,20 @@ const firstStyle = StyleSheet.create ({
     paddingRight : 25,
   },
   logInStyle : {
-    backgroundColor : '#8b2938bb',
+    backgroundColor : '#c63631',
     height : 47,
     justifyContent : 'center',
     alignItems : 'center',
     marginBottom : 5,
-    borderRadius:20,
-    borderColor:'white',
-    borderWidth:1
+    borderRadius:7
   },
   signUpStyle : {
 
-    backgroundColor : '#393f9b',
+    backgroundColor : '#73c2eb',
     justifyContent : 'center',
     alignItems : 'center',
     height : 44,
-    borderRadius:20
+    borderRadius:7
   },
   inBoutonStyle : {
 

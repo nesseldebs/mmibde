@@ -2,16 +2,39 @@ import React from 'react'
 import { View , StyleSheet , Text,  TouchableOpacity,  Image,ImageBackground} from 'react-native'
 import {TextInput } from 'react-native-paper'
 
+import firebase from '../../Data/FireBase.js'
 
 export default class Login extends React.Component {
+
+  verifyInUserManager = (email , password) => {
+
+    console.log("on à appuyer");
+
+    // Firebase va vérifier que l'email et le mot de passe coinside avec ce qu'il y a ecrit
+    firebase.auth().signInWithEmailAndPassword(email, password).then( () => {
+
+      this.setState ({
+        isSearching : true,
+      })
+
+      // Quadn tout va bien
+
+      console.log('Tout vas bien');
+
+      this.nextNav ();// On va à l'autre activité.
+    }).catch ( (error) => {
+      // Quand il y a une erreur
+      console.log(error);
+      this.setState ({
+        isSearching : false,
+      })
+      console.log('Tout vas pas bien');
+    })
+  }
 
   nextNav = () => {// On bind les datas
 
     this.props.navigation.navigate("BottomNavigation");
-  }
-
-  componentDidMount () {
-
   }
 
   constructor (props) {
@@ -19,13 +42,16 @@ export default class Login extends React.Component {
 
     this.state = {
 
+      email : "",
+      mdp : "",
+      isSearching : false
     }
   }
 
   render () {
 
     return(
-      <ImageBackground source={require('../../assets/fondecran.png')} style={{width: '100%', height: '100%'}}>
+      <ImageBackground source={require('../../assets/bg.jpg')} style={{width: '100%', height: '100%'}}>
 
       <View style = { loginStyle.container }>
 
@@ -41,23 +67,30 @@ export default class Login extends React.Component {
             <View style = { loginStyle.inputTextWithText }>
               <TextInput
                 label='Pseudo'
-                mode="outlined"
-                selectionColor="white"
-                theme={{ colors: { placeholder: 'white', text: 'white', primary: 'purple'}}}
-
+                mode="flat"
+                placeholder = "Ecrire votre email..."
+                value = { this.state.mail }
+                onChangeText = { (text) =>  this.setState ({
+                  email : text,
+                })}
               />
             </View>
 
             <View style = { loginStyle.inputTextWithText }>
               <TextInput
                 label='Mot de passe'
-                mode="outlined"
-                selectionColor="white"
-                theme={{ colors: { placeholder: 'white', text: 'white', primary: 'purple'}}}
+                mode="flat"
+                onChangeText = { (text) =>  this.setState ({
+                  mdp : text,
+                }) }
+                placeholder = "Ecrire votre mdp ..."
+                value = { this.state.mdp }
+                secureTextEntry={true}
+                autoCapitalize =  "none"
               />
             </View>
 
-            <TouchableOpacity style = { loginStyle.logInStyle } onPress = {() => { this.nextNav()}}>
+            <TouchableOpacity style = { loginStyle.logInStyle } onPress = {() => { this.verifyInUserManager(this.state.email , this.state.mdp)}}>
               <Text style = { loginStyle.inBoutonStyle }>Log in</Text>
             </TouchableOpacity>
 
@@ -72,13 +105,15 @@ const loginStyle = StyleSheet.create({
 
   container : {
     flex : 1,
+    justifyContent : "center",
   },
   inputTextWithText : {
 
     flexDirection : 'column',
+    marginBottom : 10,
   },
   logInStyle : {
-    backgroundColor : '#8b2938',
+    backgroundColor : '#c63631',
     height : 50,
     justifyContent : 'center',
     alignItems : 'center',

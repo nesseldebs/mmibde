@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View , FlatList , ActivityIndicator , Image , TextInput ,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View , FlatList , ActivityIndicator ,
+  Image , TextInput ,TouchableOpacity } from 'react-native';
 
 import CardNews from '../Card_News.js'
 import NewsInfo from './News_Info.js'
@@ -111,7 +112,6 @@ export default class New extends React.Component {
     render () {/////////////////////////////////////////////////////////////////////////////////////////////////////
       return (
         <View style = { { flex : 1 } }>
-
             <View style = { { borderWidth : 1 , borderColor : '#8f0114' , marginLeft : 10 , marginRight : 10 , marginBottom : 10 , marginTop : 15 } }>
               <TextInput
                 style =  { { paddingLeft : 7 , fontSize : 20} }
