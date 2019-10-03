@@ -6,10 +6,7 @@ import {
          Image  ,
          TouchableOpacity,
          ScrollView,
-<<<<<<< HEAD
-         ImageBackground
-=======
->>>>>>> 34ca97b32252931f695a2ae630aa3a122448d02c
+
 
        } from 'react-native'
 
