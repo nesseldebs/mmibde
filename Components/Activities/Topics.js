@@ -75,6 +75,7 @@ export default class Topics extends React.Component {
             <TextInput
               style =  { { paddingLeft : 7 , fontSize : 20} }
               placeholder = "Recherche"
+              mode="outlined"
             />
           </View>
 

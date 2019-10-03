@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View , TouchableOpacity , ImageBackground , Button} from 'react-native';
+import { StyleSheet, Text, View , TouchableOpacity } from 'react-native';
 
 import firebase from '../../Data/FireBase.js'
-import {TextInput} from 'react-native-paper'
+import {TextInput,Button} from 'react-native-paper'
 
 export default class SendComment extends React.Component {
 
@@ -78,18 +78,17 @@ export default class SendComment extends React.Component {
            <TextInput
              label ='Ecrivez votre réponse ici ...'
              style = {sendCommentStyle.textInputStyle}
-             selectionColor='red'
+             selectionColor='grey'
              onChangeText = { (text) => {this.textTosend = text}}
-             theme={{ colors: { placeholder: 'red', text: 'black', primary: 'grey'}}}
+             theme={{ colors: { placeholder: 'grey', text: '#8f0114', primary: '#8f0114'}}}
              mode="outlined"
            />
          </View>
          <View style = { { marginBottom : 20 } }>
            <Button
-             title = 'Envoyer'
              onPress = {() => this.sendAnwer ()}
-             color='white'
-           />
+             color='#8f0114'
+           >Envoyer</Button>
          </View>
        </View>
        </View>

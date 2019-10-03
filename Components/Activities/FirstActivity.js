@@ -71,12 +71,14 @@ const firstStyle = StyleSheet.create ({
     paddingRight : 25,
   },
   logInStyle : {
-    backgroundColor : '#8b2938',
+    backgroundColor : '#8b2938bb',
     height : 47,
     justifyContent : 'center',
     alignItems : 'center',
     marginBottom : 5,
-    borderRadius:20
+    borderRadius:20,
+    borderColor:'white',
+    borderWidth:1
   },
   signUpStyle : {
 

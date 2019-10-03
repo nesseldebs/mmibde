@@ -42,10 +42,8 @@ export default class Login extends React.Component {
               <TextInput
                 label='Pseudo'
                 mode="outlined"
-                underlineColorAndroid='transparent'
                 selectionColor="white"
-                placeholderTextColor="#ffffffDD"
-                theme={{ colors: { placeholder: 'white', text: 'white', primary: 'blue'}}}
+                theme={{ colors: { placeholder: 'white', text: 'white', primary: 'purple'}}}
 
               />
             </View>
@@ -54,6 +52,8 @@ export default class Login extends React.Component {
               <TextInput
                 label='Mot de passe'
                 mode="outlined"
+                selectionColor="white"
+                theme={{ colors: { placeholder: 'white', text: 'white', primary: 'purple'}}}
               />
             </View>
 

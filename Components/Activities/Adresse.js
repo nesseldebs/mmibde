@@ -5,7 +5,8 @@ import {
          StyleSheet ,
          Image  ,
          TouchableOpacity,
-         ScrollView
+         ScrollView,
+         ImageBackground
 
        } from 'react-native'
 
@@ -36,17 +37,22 @@ export default class Adresse extends React.Component {
 
   render () {
     return (
+      <ImageBackground source={require('../../assets/fondecran.png')} style={{width: '100%', height: '100%'}}>
+
       <ScrollView contentContainerStyle = { signStyle.mainContainer }>
 
             <View >
-              <TextInput label='Adresse mail' mode="outlined"
+              <TextInput label='Adresse mail' mode="outlined" selectionColor="white"
+              theme={{ colors: { placeholder: 'white', text: 'white', primary: 'purple'}}}
                 />
-                <TextInput label='Mot de passe' mode="outlined"
+                <TextInput label='Mot de passe' mode="outlined" selectionColor="white"
+                theme={{ colors: { placeholder: 'white', text: 'white', primary: 'purple'}}}
                   />
                   <TextInput label='Confirmation'
                               mode="outlined"
                               value = { this.state.confirmation }
-
+                              selectionColor="white"
+                              theme={{ colors: { placeholder: 'white', text: 'white', primary: 'purple'}}}
                               onChangeText = { (text) => { this.setState ({
                                 confirmation  : text,
                               }
@@ -58,6 +64,7 @@ export default class Adresse extends React.Component {
                 </TouchableOpacity>
             </View>
       </ScrollView>
+      </ImageBackground>
     );
   }
 }

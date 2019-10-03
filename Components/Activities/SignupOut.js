@@ -5,7 +5,8 @@ import {
          StyleSheet ,
          Image  ,
          TouchableOpacity,
-         ScrollView
+         ScrollView,
+         ImageBackground
 
        } from 'react-native'
 
@@ -33,6 +34,8 @@ export default class SignUp extends React.Component {
   render () {
 
     return  (
+      <ImageBackground source={require('../../assets/fondecran.png')} style={{width: '100%', height: '100%'}}>
+
       <ScrollView contentContainerStyle = { signStyle.mainContainer }>
 
         <View style = { { flex : 1 , justifyContent : 'center' , alignItems : 'center' } }>
@@ -47,10 +50,14 @@ export default class SignUp extends React.Component {
               label = 'Nom'
               callBackFunction = { (text) => { console.log('coucou'); } }
               mode="outlined"
+              selectionColor="white"
+              theme={{ colors: { placeholder: 'white', text: 'white', primary: 'purple'}}}
           />
           <TextInput
               label = 'Prénom'
               mode="outlined"
+              selectionColor="white"
+              theme={{ colors: { placeholder: 'white', text: 'white', primary: 'purple'}}}
           />
 
             <TouchableOpacity style = { signStyle.boutonStyle } onPress = { () => this.passToNext () }>
@@ -58,6 +65,7 @@ export default class SignUp extends React.Component {
             </TouchableOpacity>
         </View>
     </ScrollView>
+    </ImageBackground>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View , WebView} from 'react-native';
+import { StyleSheet, Text, View , WebView,Platform} from 'react-native';
 
 export default class CardNewsS extends React.Component {
 
@@ -30,7 +30,7 @@ export default class CardNewsS extends React.Component {
   render () {
     return (
 
-      <View style = {styleCard.mainContainer}>
+      <View  style = {styleCard.mainContainer}>
         <View style = {styleCard.titleView}>
           <Text style = {styleCard.titleTextStyle}>{this.state.titre}</Text>
         </View>
@@ -48,14 +48,43 @@ export default class CardNewsS extends React.Component {
 const styleCard = StyleSheet.create({
 
   mainContainer : {
-    height : 230,
-    width : 170,
-    flexDirection : 'column',
-    opacity : 15,
-    borderRadius : 3,
-    elevation:3,
-    marginRight : 7
-  },
+
+    ...Platform.select({
+
+      android : {
+        height : 230,
+        width : 170,
+        flexDirection : 'column',
+        opacity : 15,
+        borderRadius : 3,
+        elevation:3,
+        marginRight : 7,
+        margin: 10,
+        marginBottom : 10,
+      },
+
+      ios : {
+        height : 230,
+        width : 170,
+        marginBottom : 10,
+        marginRight : 7,
+
+        flexDirection : 'column',
+        shadowOffset: { width: 0, height: 2 },
+        //shadowOpacity: 0.55,
+        shadowRadius: 5,
+        borderRadius: 3,
+        shadowColor: 'black',
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.3,
+
+
+
+
+
+      }
+
+    })},
   titleView :  {
     flex : 1,
     alignItems : 'center',

@@ -1,9 +1,9 @@
 import React from 'react'
-import { View ,  StyleSheet , Text , Button ,ImageBackground} from 'react-native'
+import { View ,  StyleSheet , Text , } from 'react-native'
 import {Icon} from "react-native-elements"
 
 import firebase from '../../Data/FireBase.js'
-import {TextInput} from 'react-native-paper'
+import {TextInput,Button} from 'react-native-paper'
 class SendTopic extends React.Component {
 
 
@@ -64,7 +64,6 @@ class SendTopic extends React.Component {
 
   render () {
     return (
-      //<ImageBackground source={require('../../assets/fondecran.png')} style={{width: '100%', height: '100%'}}>
       <View style = {sendStyle.container}>
         <View style = {sendStyle.titreView}>
           <Text style = {sendStyle.titreStyle}>Topic</Text>
@@ -76,10 +75,13 @@ class SendTopic extends React.Component {
         <View style = {{borderBottomWidth : 1 }}>
             <TextInput
               label ='Titre du Topic ...'
-              selectionColor='white'
+              selectionColor='grey'
               style = {sendStyle.textInputStyle}
               onChangeText = { (text) => {this.titreTextVar = text}}
-              theme={{ colors: { placeholder: 'white', text: 'white', primary: 'black'}}}
+              theme={{ colors: { placeholder: 'grey', text: '#8f0114', primary: '#8f0114'}}}
+              mode="outlined"
+              placeholderTextColor="#ffffffDD"
+
             />
         </View>
 
@@ -88,24 +90,27 @@ class SendTopic extends React.Component {
           <View style = {{borderBottomWidth : 1 , marginBottom : 10}}>
             <TextInput
               label ='Ecrivez la question du topic ...'
-              selectionColor='red'
+              selectionColor='grey'
               style = {sendStyle.textInputStyle}
               onChangeText = { (text) => {this.questionTextVar = text}}
-              theme={{ colors: { placeholder: 'red', text: 'black', primary: 'black'}}}
+              theme={{ colors: { placeholder: 'grey', text: 'black', primary: '#8f0114'}}}
+              mode="outlined"
+              placeholderTextColor="#ffffffDD"
+
             />
           </View>
           <View>
           <View style = { { marginBottom : 20 } }>
             <Button
-              color='white'
-              title = 'Send Topics'
+              color='#8f0114'
               onPress = {() => {this.sendTopic ()}}
-            />
+              mode="outlined"
+
+            >Send Topic</Button>
           </View>
         </View>
         </View>
       </View>
-    //  </ImageBackground>
     );
   }
 }
@@ -144,6 +149,7 @@ const sendStyle =StyleSheet.create ({
 
       fontSize : 30,
       fontWeight : 'bold',
+      color:'#8f0114'
     },
     subTitleView : {
 
