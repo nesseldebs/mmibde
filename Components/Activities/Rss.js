@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View , ScrollView , FlatList , ActivityIndicator , Image , Button} from 'react-native';
+import { StyleSheet, Text, View , ScrollView , FlatList , ActivityIndicator , Image , Button,ImageBackground} from 'react-native';
 
 import firebase from '../../Data/FireBase.js'
 import NewsS from '../Shortcut/Card_News_s.js'
@@ -111,6 +111,7 @@ class Rss extends React.Component {
   render  () {
     return (
     <ScrollView scrollEnabled= {true}>
+    <ImageBackground source={require('../../assets/bg.jpg')} style={{width: '100%', height: '100%'}}>
 
       <View style = { { flex : 1  , paddingTop : 10,} }>
         <Banner
@@ -162,7 +163,9 @@ class Rss extends React.Component {
           />
         </View>
       </View>
+      </ImageBackground>
     </ScrollView>
+
     );
   }
 }

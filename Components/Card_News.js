@@ -1,27 +1,10 @@
 import React from 'react'
 import { View , Text , StyleSheet, Dimensions , Image, TouchableOpacity } from 'react-native'
-import {IconButton} from "react-native-paper"
+import {IconButton, Card,Paragraph, Avatar,Title} from "react-native-paper"
 
 class CardNews extends React.Component {
 
   // il faut rajouter le constructeur et la fonction componentDidMount
-
-
-
-/*  mainContainerVue:{
-      margin: 10,
-      marginBottom : 10,
-      shadowColor: '#8f0114',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.55,
-      shadowRadius: 2,
-      borderRadius: 5,
-      backgroundColor:'grey',
-      borderTopLeftRadius: 12,
-      borderTopRightRadius: 12,
-      width:Dimensions.get('window').width-20,
-      elevation:3
-    },*/
 
 
   componentDidMount () {
@@ -62,75 +45,27 @@ class CardNews extends React.Component {
 
 
       return (
-      <TouchableOpacity onPress = {this.displayId} onPress = {() => this.passToDetail (this.state.idNews)}>
-        <View style={cardStyle.mainC}>
 
-          <View style={cardStyle.avatarVue}>
-            <View style= {cardStyle.userVue}>
-              <Image style={cardStyle.avatar} source={this.state.avatar}/>
-            </View>
+          <Card  style={{margin:8, elevation:3}} onPress = {this.displayId} onPress = {() => this.passToDetail (this.state.idNews)}>
+            <Card.Title  title={this.state.titrenews} titleStyle={cardStyle.titleNews} subtitle={this.state.avatarName} left={(props) => <Avatar.Icon {...props} icon= {this.state.avatar} style={cardStyle.avatar}/>} />
+            <Card.Cover source={this.state.imagenews}/>
+            <Card.Content>
+            <Card.Actions>
+                <Paragraph style= {cardStyle.date}> le {this.state.dateDeMiseEnLigne}</Paragraph>
+            </Card.Actions>
 
-            <View style = { { flexDirection : 'column' } }>
+            <Card.Content>
+                <Paragraph style= {cardStyle.description}> {this.state.description} </Paragraph>
+            </Card.Content>
 
-              <View style = { { paddingLeft : 6 } }>
-                  <Text style={cardStyle.titleNews}> {this.state.titrenews} </Text>
-              </View>
+            </Card.Content>
+          </Card>
 
-              <View style = { { paddingLeft : 4 } }>
-                <Text style={cardStyle.avatarName}> {this.state.avatarName} </Text>
-              </View>
-
-            </View>
-          </View>
-
-            <Image style={cardStyle.image} source={this.state.imagenews}/>
-          <View style={cardStyle.containerVue}>
-
-              <View style = { { flex:1 ,padding : 10 } }>
-                <Text style= {cardStyle.descritpion} numberOfLines={3}>{this.state.description}</Text>
-              </View>
-
-              <TouchableOpacity style={cardStyle.iconVue}>
-                <IconButton icon="camera" color="#551A8B" />
-                <Text style={cardStyle.like}>{this.state.nombreLike} Likes</Text>
-                <Text style={cardStyle.date}>le {this.state.dateDeMiseEnLigne}</Text>
-              </TouchableOpacity>
-
-          </View>
-
-        </View>
-      </ TouchableOpacity>
-      );
-    }
+    );
+  }
 }
-
 const cardStyle = StyleSheet.create ( {
 
-    mainC :{
-
-      borderRadius : 5,
-      margin : 10,
-      marginBottom : 10,
-      marginLeft : 10,
-      width :Dimensions.get('window').width-20,
-      elevation:3,
-      borderColor : 'black',
-    },
-
-  avatarVue:{
-    flexDirection: "row",
-    backgroundColor:'white',
-    paddingLeft : 7,
-    paddingTop : 7,
-    marginBottom : 15,
-  },
-  userVue:{
-    flexDirection: "row",
-    alignItems : 'center',
-    justifyContent : 'center',
-    marginBottom:3,
-    marginTop:3
-  },
   avatar:{
     height: 40,
     width: 40,
@@ -143,48 +78,18 @@ const cardStyle = StyleSheet.create ( {
     color: '#8f0114',
     marginTop: 10
   },
-  imageVue:{
-    height: 400,
-    width: "100%",
-    marginTop: 14,
-    borderRadius: 12
-  },
-    image: {
-      height: 210,
-      width: "100%",
-      resizeMode:'stretch'
-    },
-    containerVue :{
-      padding: 6,
-      backgroundColor: "#fff",
-    },
-    iconVue:{
-      flexDirection: "row",
-      alignItems: "center",
-    },
-    like:{
+  like:{
       color: "#888",
-      marginLeft: 5
+      //marginLeft: 5
     },
-    date:{
-      marginLeft:150,
+  date:{
+      marginLeft:200,
       color: "#888",
     },
-    title : {
-    lineHeight: 24,
-    fontWeight: "bold",
-    color: "#8f0114",
-    fontSize: 16,
-    flexWrap : 'wrap' /* retour à la ligne si titre trop long */
-  },
-  description :{
-    color: 'gray'
-  },
-  avatarName : {
 
-    fontSize: 13,
-    color: "#727272",
-    marginTop: 10
+  description :{
+    color: 'gray',
+    //textAlign:'justify'
   }
 });
 

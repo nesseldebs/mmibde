@@ -6,7 +6,7 @@ import {
          Image  ,
          TouchableOpacity,
          ScrollView,
-
+         ImageBackground
 
        } from 'react-native'
 
@@ -58,7 +58,7 @@ export default class SignUp extends React.Component {
   render () {
 
     return  (
-      <ImageBackground source={require('../../assets/fondecran.png')} style={{width: '100%', height: '100%'}}>
+      <ImageBackground source={require('../../assets/bg.jpg')} style={{width: '100%', height: '100%'}}>
 
       <ScrollView contentContainerStyle = { signStyle.mainContainer }>
 
@@ -69,7 +69,7 @@ export default class SignUp extends React.Component {
           />
         </View>
 
-        <View style = { { flex : 1} }>
+        <View style = { { flex:1 } }>
           <TextInput
               label = 'Nom'
               onChangeText = { (text) => { this.setState ({
@@ -78,6 +78,8 @@ export default class SignUp extends React.Component {
               placeholder = "Ecrire votre nom ...."
               mode="flat"
               value = { this.state.nom }
+
+              style={{marginBottom:10}}
           />
           <TextInput
               label = 'Prénom'
@@ -110,7 +112,7 @@ const signStyle = StyleSheet.create ({
     justifyContent : 'center',
     alignItems : 'center',
     marginTop:10,
-    borderRadius:20,
+    borderRadius:7,
   },
   boutonTextStyle : {
     fontSize : 22,

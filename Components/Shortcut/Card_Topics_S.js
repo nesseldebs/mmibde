@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View , WebView} from 'react-native';
+import { Card,Paragraph, Title} from "react-native-paper"
 
 class CardTopicsS extends React.Component {
 
@@ -29,39 +30,30 @@ class CardTopicsS extends React.Component {
   render () {
 
     return (
-      <View style = {styleTopicsS.mainContainer}>
-        <View style = {styleTopicsS.titleView}>
-          <Text  style = {styleTopicsS.titleTextStyle} > { this.state.topicTitle } </Text>
-        </View>
-        <View style = {styleTopicsS.contentView} >
-          <Text style = {styleTopicsS.contentTextStyle} numberOfLines = {4} > { this.state.topicQuestion } </Text>
-        </View>
-        <View style = {styleTopicsS.dateView}>
-          <Text >{ this.state.topicDate }</Text>
-        </View>
-      </View>
+
+      <Card style={styleTopicsS.card}>
+      <Card.Title title={this.state.topicTitle} titleStyle = {styleTopicsS.titleTextStyle} />
+      <Paragraph style={styleTopicsS.contentView} numberOfLines = {5} >{this.state.topicQuestion}</Paragraph>
+      <Card.Content style = {styleTopicsS.dateView}>
+        <Paragraph style = {styleTopicsS.dateTextStyle}>{this.state.topicDate}</Paragraph>
+      </Card.Content>
+      </Card>
+
+
+
     );
   }
 }
 
 const styleTopicsS = StyleSheet.create ({
 
-  mainContainer : {
-
+  card:{
     height : 230,
     width : 170,
-    flexDirection : 'column',
-    opacity : 15,
-    borderRadius : 3,
-    elevation:3,
-    marginRight : 7
-  },
-  titleView :  {
-    flex : 1,
-    alignItems : 'center',
-    justifyContent : 'center',
-    paddingTop : 10,
-    paddingLeft : 7,
+    marginBottom : 10,
+    marginRight : 10,
+    elevation:5,
+  //  backgroundColor:'#F2F7C5aa'
   },
   titleTextStyle : {
     fontSize : 23,
@@ -70,14 +62,10 @@ const styleTopicsS = StyleSheet.create ({
   },
   contentView : {
     flex : 5,
-    justifyContent : 'center',
+    fontSize : 18,
     alignItems : 'center',
-    textAlign : 'center',
     paddingLeft : 12,
     paddingRight : 12,
-  },
-  contentTextStyle : {
-    fontSize : 18,
   },
   dateView : {
     flex : 1,

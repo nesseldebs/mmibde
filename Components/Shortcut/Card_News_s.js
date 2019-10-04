@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View , WebView,Platform} from 'react-native';
+import { Card,Paragraph, Title} from "react-native-paper"
 
 export default class CardNewsS extends React.Component {
 
@@ -30,83 +31,41 @@ export default class CardNewsS extends React.Component {
   render () {
     return (
 
-      <View  style = {styleCard.mainContainer}>
-        <View style = {styleCard.titleView}>
-          <Text style = {styleCard.titleTextStyle}>{this.state.titre}</Text>
-        </View>
-        <View style = {styleCard.contentView}>
-          <Text style = {styleCard.contentTextStyle} numberOfLines = {4} >{this.state.content}</Text>
-        </View>
-        <View style = {styleCard.dateView}>
-          <Text>{this.state.date}</Text>
-        </View>
-      </View>
+      <Card style={styleCard.card}>
+        <Card.Title title={this.state.titre} titleStyle = {styleCard.titleTextStyle} />
+        <Paragraph style={styleCard.contentView} numberOfLines = {5} >{this.state.content}</Paragraph>
+        <Card.Content style = {styleCard.dateView}>
+          <Paragraph style = {styleCard.dateTextStyle}>{this.state.date}</Paragraph>
+        </Card.Content>
+      </Card>
+
     );
   }
 }
 
 const styleCard = StyleSheet.create({
 
-  mainContainer : {
 
-    ...Platform.select({
-
-      android : {
-        height : 230,
-        width : 170,
-        flexDirection : 'column',
-        opacity : 15,
-        borderRadius : 3,
-        elevation:3,
-        marginRight : 7,
-        margin: 10,
-        marginBottom : 10,
-      },
-
-      ios : {
-        height : 230,
-        width : 170,
-        marginBottom : 10,
-        marginRight : 7,
-
-        flexDirection : 'column',
-        shadowOffset: { width: 0, height: 2 },
-        //shadowOpacity: 0.55,
-        shadowRadius: 5,
-        borderRadius: 3,
-        shadowColor: 'black',
-    shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 0.3,
-
-
-
-
-
-      }
-
-    })},
-  titleView :  {
-    flex : 1,
-    alignItems : 'center',
-    justifyContent : 'center',
-    paddingTop : 10,
-    paddingLeft : 7,
-  },
+    card:{
+      height : 230,
+      width : 170,
+      marginBottom : 10,
+      marginRight : 10,
+      elevation:5,
+    //  backgroundColor:'rgba(41, 194, 82, 0.3)' 
+    },
   titleTextStyle : {
     fontSize : 23,
     color : '#8f0114',
-    fontWeight : 'bold'
+    fontWeight : 'bold',
+    textAlign:'center'
   },
   contentView : {
     flex : 5,
-    justifyContent : 'center',
     alignItems : 'center',
-    textAlign : 'center',
     paddingLeft : 12,
     paddingRight : 12,
-  },
-  contentTextStyle : {
-    fontSize : 18,
+    fontSize:18
   },
   dateView : {
     flex : 1,
