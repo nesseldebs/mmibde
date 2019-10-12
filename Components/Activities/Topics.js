@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View , FlatList , Dimensions , TouchableOpacity  , ActivityIndicator , TextInput} from 'react-native';
 
-import {IconButton, FAB} from 'react-native-paper'
+import {IconButton, Searchbar,FAB} from 'react-native-paper'
 
 import CardTopic from "../Card_Topic.js"
 import firebase from '../../Data/FireBase.js'
@@ -52,11 +52,12 @@ export default class Topics extends React.Component {
 
     this.state = {
       isFetching : true,
-      topicData : null
+      topicData : null,
     }
   }
 
    render () {//////////////////////////////////////////////////////////////////////////////////////////////////
+     const { firstQuery } = this.state;
 
      console.log('rendering item topics ... ');
 
@@ -71,13 +72,12 @@ export default class Topics extends React.Component {
       return (
         <View style = {topicsStyle.container} >
 
-          <View style = { { borderWidth : 1 , borderColor : '#8f0114' , marginLeft : 10 , marginRight : 10 , marginBottom : 10 , marginTop : 15 } }>
-            <TextInput
-              style =  { { paddingLeft : 7 , fontSize : 20} }
-              placeholder = "Recherche"
-              mode="outlined"
-            />
-          </View>
+        <Searchbar
+        placeholder="Search"
+        onChangeText={query => { console.log("text",query); this.setState({ firstQuery: query }); }}
+        value={firstQuery}
+
+        />
 
           <FlatList
             data = {this.state.topicData}

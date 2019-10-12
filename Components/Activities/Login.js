@@ -73,6 +73,8 @@ export default class Login extends React.Component {
                 onChangeText = { (text) =>  this.setState ({
                   email : text,
                 })}
+                theme={{ colors: { placeholder: 'grey', text: '#8f0114', primary: '#8f0114'}}}
+
               />
             </View>
 
@@ -87,10 +89,11 @@ export default class Login extends React.Component {
                 value = { this.state.mdp }
                 secureTextEntry={true}
                 autoCapitalize =  "none"
+                theme={{ colors: { placeholder: 'grey', text: '#8f0114', primary: '#8f0114'}}}
               />
             </View>
 
-            <TouchableOpacity style = { loginStyle.logInStyle } onPress = {() => { this.verifyInUserManager(this.state.email , this.state.mdp)}}>
+            <TouchableOpacity style = { loginStyle.logInStyle } onPress = {() => { this.nextNav()}}>
               <Text style = { loginStyle.inBoutonStyle }>Log in</Text>
             </TouchableOpacity>
 
@@ -118,7 +121,7 @@ const loginStyle = StyleSheet.create({
     justifyContent : 'center',
     alignItems : 'center',
     marginTop:10,
-    borderRadius:20
+    borderRadius:7
   },
   dataVue : {
     paddingLeft : 20,

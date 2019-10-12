@@ -4,7 +4,7 @@ import { StyleSheet, Text, View , FlatList , ActivityIndicator ,
 
 import CardNews from '../Card_News.js'
 import NewsInfo from './News_Info.js'
-import {IconButton} from 'react-native-paper'
+import {IconButton,Searchbar} from 'react-native-paper'
 
 import firebase from '../../Data/FireBase.js'
 
@@ -104,20 +104,25 @@ export default class New extends React.Component {
      this.state = {
        dataToUse : null,
        isLoading : true,
-       isGodModeEnabled : true
+       isGodModeEnabled : true,
+       firstQuery:''
      }
 
    }
 
     render () {/////////////////////////////////////////////////////////////////////////////////////////////////////
+      const { firstQuery } = this.state;
+
       return (
         <View style = { { flex : 1 } }>
-            <View style = { { borderWidth : 1 , borderColor : '#8f0114' , marginLeft : 10 , marginRight : 10 , marginBottom : 10 , marginTop : 15 } }>
-              <TextInput
-                style =  { { paddingLeft : 7 , fontSize : 20} }
-                placeholder = "Recherche"
-              />
-            </View>
+
+
+            <Searchbar
+            placeholder="Search"
+            onChangeText={query => { console.log("text",query); this.setState({ firstQuery: query }); }}
+            value={firstQuery}
+
+            />
 
             <FlatList
               data = { this.state.dataToUse  }

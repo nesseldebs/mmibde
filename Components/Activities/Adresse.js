@@ -93,7 +93,7 @@ export default class Adresse extends React.Component {
 
   render () {
     return (
-      <ImageBackground source={require('../../assets/fondecran.png')} style={{width: '100%', height: '100%'}}>
+      <ImageBackground source={require('../../assets/bg.jpg')} style={{width: '100%', height: '100%'}}>
 
       <ScrollView contentContainerStyle = { signStyle.mainContainer }>
 
@@ -105,16 +105,22 @@ export default class Adresse extends React.Component {
                          onChangeText = { (text) => { this.setState ({
                            adresse : text
                          })} }
+                         theme={{ colors: { placeholder: 'grey', text: 'black', primary: '#8f0114'}}}
+                         style={{marginBottom:10}}
+
 
                 />
                 <TextInput label='Mot de passe'
                            mode="flat"
                            secureTextEntry={true}
-                           placeholder = "Rentrer vote mot de passe ..."
+                           placeholder = "Rentrer votre mot de passe ..."
                            value = { this.state.mdp }
                            onChangeText = { (text) => { this.setState ({
                              mdp : text,
                            })}}
+                           theme={{ colors: { placeholder: 'grey', text: 'black', primary: '#8f0114'}}}
+                           style={{marginBottom:10}}
+
                   />
                   <TextInput label='Confirmation'
                               mode="flat"
@@ -125,6 +131,8 @@ export default class Adresse extends React.Component {
                                 confirmation  : text,
                               }
                             )}}
+                            theme={{ colors: { placeholder: 'grey', text: 'black', primary: '#8f0114'}}}
+                            style={{marginBottom:10}}
                     />
 
                 <TouchableOpacity style = { signStyle.boutonStyle } onPress = { () => this.connect() }>
@@ -149,7 +157,7 @@ const signStyle = StyleSheet.create ({
     justifyContent : 'center',
     alignItems : 'center',
     marginTop:10,
-    borderRadius:20
+    borderRadius:7
   },
   boutonTextStyle : {
     fontSize : 22,

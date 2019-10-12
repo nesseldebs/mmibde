@@ -78,7 +78,7 @@ export default class SignUp extends React.Component {
               placeholder = "Ecrire votre nom ...."
               mode="flat"
               value = { this.state.nom }
-
+              theme={{ colors: { placeholder: 'grey', text: 'black', primary: '#8f0114'}}}
               style={{marginBottom:10}}
           />
           <TextInput
@@ -88,6 +88,7 @@ export default class SignUp extends React.Component {
               }) } }
               placeholder = "Ecrire votre prénom ..."
               mode="flat"
+              theme={{ colors: { placeholder: 'grey', text: 'black', primary: '#8f0114'}}}
               value = { this.state.prenom }
           />
 

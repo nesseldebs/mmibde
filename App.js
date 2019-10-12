@@ -9,10 +9,10 @@ export default class App extends React.Component {
   render () {
 
     return (
-      <View style = { appStyle.textMilieu }>
+      <SafeAreaView style = { appStyle.textMilieu }>
         <StatusBar hidden />
         <Nav />
-      </View>
+      </SafeAreaView>
     );
   }
 }
