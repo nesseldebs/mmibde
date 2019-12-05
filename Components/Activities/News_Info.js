@@ -1,6 +1,6 @@
 import React from 'react'
 import { View , ScrollView , StyleSheet , Image , Text , TouchableOpacity, Dimensions} from 'react-native'
-import {IconButton} from "react-native-paper"
+import {Title} from "react-native-paper"
 
 export default class NewsInfo extends React.Component {
 
@@ -50,7 +50,7 @@ export default class NewsInfo extends React.Component {
         titrenews: "Soirée d'inté le 17 septembre 20H",
         avatar: require ('../../assets/news.png'),
         avatarName:'Elie',
-        imagenews:require ('../../assets/news.png'),
+        imagenews:require ('../../assets/test3.jpg'),
         dateDeMiseEnLigne:'00/00/0000',
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
         nombreLike:'1000',
@@ -61,22 +61,14 @@ export default class NewsInfo extends React.Component {
 
   render () {
     return (
-      <ScrollView style = {newsInfoStyle.container}>
+      <ScrollView >
+        <View style = {newsInfoStyle.container}>
         <View style = {newsInfoStyle.titreVue} >
-          <Text style={newsInfoStyle.title}>{this.state.titrenews}</Text>
+          <Title style={newsInfoStyle.title}>{this.state.titrenews}</Title>
         </View>
 
         <View style = {newsInfoStyle.imageVue}>
           <Image style = {newsInfoStyle.imageStyle} source = {this.state.imagenews}/>
-        </View>
-
-        <View style = {newsInfoStyle.likeVue}>
-          <TouchableOpacity>
-            <IconButton icon="camera" color="#551A8B" />
-          </TouchableOpacity>
-
-          <Text style={newsInfoStyle.likeVue}>{this.state.nombreLike} Likes</Text>
-          <Text style={newsInfoStyle.date}>le {this.state.dateDeMiseEnLigne}</Text>
         </View>
 
         <View style = {newsInfoStyle.descriptionVue}>
@@ -84,9 +76,11 @@ export default class NewsInfo extends React.Component {
         </View>
 
         <View style ={ newsInfoStyle.avatarVue }>
-          <Text>{this.state.avatarName}</Text>
-        </View>
+          <Text style={newsInfoStyle.name}>{this.state.avatarName}</Text>
+          <Text style={newsInfoStyle.date}>le {this.state.dateDeMiseEnLigne}</Text>
 
+        </View>
+        </View>
       </ScrollView>
     );
   }
@@ -98,21 +92,15 @@ const newsInfoStyle = StyleSheet.create ({
     flex:1,
     flexDirection:'column',
     paddingTop: 5,
-    width:Dimensions.get('window').width-15,
-
+    alignItems : 'center',
   },
   imageStyle : {
-    height:'100%',
-    width:'100%',
-    borderRadius:12,
-
+    resizeMode:'contain',
+    width:Dimensions.get('window').width-20,
+    height:400
   },
   imageVue : {
-    width : "100%",
-    height: 170,
-    marginBottom: 15,
-    marginTop:30,
-    borderRadius:12,
+    marginTop:10,
   },
   likeVue : {
     color: "#888",
@@ -121,7 +109,7 @@ const newsInfoStyle = StyleSheet.create ({
     marginBottom : 10,
   },
   date : {
-    marginLeft:165,
+    marginLeft:240,
     color: "#888",
   },
   titreVue : {
@@ -129,7 +117,7 @@ const newsInfoStyle = StyleSheet.create ({
     justifyContent:'center',
     alignItems:'center',
     //marginBottom : 20,
-    marginTop:40,
+    marginTop:20,
 
   },
   title:{
@@ -145,11 +133,16 @@ const newsInfoStyle = StyleSheet.create ({
     paddingLeft : 20,
     paddingRight : 20,
     marginBottom : 20,
+    marginTop:10
   },
   avatarVue : {
     justifyContent : 'flex-end',
     alignItems: 'flex-end',
     paddingRight:20,
+  },
+  name:{
+    color:"#888",
+    marginLeft: 250
   },
   text:{
     textAlign:'justify'

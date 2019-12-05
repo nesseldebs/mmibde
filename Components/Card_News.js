@@ -4,8 +4,6 @@ import {IconButton, Card,Paragraph, Avatar,Title} from "react-native-paper"
 
 class CardNews extends React.Component {
 
-  // il faut rajouter le constructeur et la fonction componentDidMount
-
 
   componentDidMount () {
 
@@ -32,9 +30,9 @@ class CardNews extends React.Component {
 
     this.state = {
       titrenews: 'NEWS',
-      avatar: require ('../assets/news.png'),
+      avatar: require ('../assets/user.png'),
       avatarName:'Elie',
-      imagenews:require ('../assets/test1.jpg'),
+      imagenews:require ('../assets/plan.jpg'),
       dateDeMiseEnLigne:'00/00/0000',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       nombreLike:'27',
@@ -70,7 +68,8 @@ const cardStyle = StyleSheet.create ( {
     height: 40,
     width: 40,
     borderRadius: 25,
-    margin: 2
+    margin: 2,
+    resizeMode:'cover'
   },
   titleNews:{
     fontWeight: "bold",

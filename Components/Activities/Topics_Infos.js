@@ -1,8 +1,7 @@
 import React from 'react'
-import { View , Text , StyleSheet , TouchableOpacity , FlatList , Dimensions } from 'react-native'
+import { View , Text , StyleSheet , TouchableOpacity , FlatList , Dimensions,Image } from 'react-native'
 import { createAppContainer , createStackNavigator } from 'react-navigation'
 
-import {IconButton} from 'react-native-paper'
 import firebase from '../../Data/FireBase.js'
 
 import CardTopic from '../Card_Topic.js'
@@ -161,9 +160,13 @@ export default class TopicInfo extends React.Component {
 
         </View>
 
-        <TouchableOpacity style = { topicsInfoStyle.addBoutonStyle } onPress = { () => {this.props.navigation.navigate ('SendComment', { idToAnswer : this.state.idToLoad })}}>
-              <IconButton icon="camera"  style={topicsInfoStyle.icon}/>
+        <TouchableOpacity style = { topicsInfoStyle.addBoutonStyle } onPress = { () => {this.props.navigation.navigate ('SendComment', { idToAnswer : this.state.idToLoad })}}       >
+            <Image source= { require ('../../assets/comment.png') }
+                    style={{ height : 35 , width : 35, alignSelf:'center',marginTop:8 } }
+           />
+
         </TouchableOpacity>
+
       </View>
     );
   }
@@ -182,7 +185,7 @@ const topicsInfoStyle = StyleSheet.create ({
     width: 50,
     height: 50,
     borderRadius: 100/2,
-    backgroundColor: 'orange',
+    backgroundColor: '#73c2eb',
   },
   icon:{
     color:"white",

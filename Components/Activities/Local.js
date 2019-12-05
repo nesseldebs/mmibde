@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View , ScrollView , Image , TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View , ScrollView , Image , TouchableOpacity,ImageBackground } from 'react-native';
 
 import firebase from '../../Data/FireBase.js'
 import Modal from 'react-native-modal'
@@ -194,6 +194,7 @@ render () {
   if (this.state.localStateValue == true ) {
 
     return (
+      <ImageBackground source={require('../../assets/snack.png')} style={{width: '100%', height: '100%'}}>
       <ScrollView contentContainerStyle = { localStyle.mainContainer }>
 
         { this.openModal (this.state.isModalVisible) }
@@ -225,6 +226,7 @@ render () {
             { this.renderGodButton (true) }
 
       </ScrollView>
+      </ImageBackground>
     );
 
   } else {

@@ -3,8 +3,10 @@ import { createAppContainer ,
          createStackNavigator,
          createMaterialTopTabNavigator,
          createDrawerNavigator,
+         createBottomTabNavigator
        } from "react-navigation";
-
+import React from 'react'
+import { Image } from 'react-native';
 import Home from '../Activities/Home.js'
 import News from '../Activities/News.js'
 import Topic from '../Activities/Topics.js'
@@ -30,6 +32,7 @@ const NewsNav = createStackNavigator ({
       headerStyle :{
         backgroundColor : '#8b2938',
       },
+      headerTintColor : 'white',
     }
   },
   NewsInfo : {
@@ -38,7 +41,8 @@ const NewsNav = createStackNavigator ({
       title:'Informations',
       headerStyle :{
         backgroundColor : '#8b2938',
-      }
+      },
+      headerTintColor : 'white',
     }
   },
   Post : {
@@ -48,6 +52,7 @@ const NewsNav = createStackNavigator ({
       headerStyle :{
         backgroundColor : '#8b2938',
       },
+      headerTintColor : 'white',
     }
   }
 },{
@@ -106,24 +111,63 @@ const TopNavigation = createMaterialTopTabNavigator ({
   tabBarOptions : {
     style : {
       backgroundColor : '#8b2938',
-      
-    }
+
+    },
+
   }
 });
 
-const BottomNavigation = createMaterialBottomTabNavigator({
-  Home : { screen : TopNavigation },
-  Topic : { screen : TopicNav },
-  News : { screen : NewsNav },
-},{
-  initialRouteName : 'Home',
-  activeColor : 'white',
-  order : ['News' , 'Home' , 'Topic'],
-  inactiveColor : '#4a0811',
+const BottomNavigation = createBottomTabNavigator({
+  Home : { screen : TopNavigation,
+    navigationOptions: {
+      tabBarIcon: () => {
+        return <Image
+          source={require('../../assets/home.png')}
+        style={{height:30,width:30,marginTop:-5}}
+          />
+        }
+    }
+   },
+  Topic : { screen : TopicNav ,
+    navigationOptions: {
+      tabBarIcon: () => {
+        return <Image
+          source={require('../../assets/logotopic.png')}
+        style={{height:30,width:30,marginTop:-5}}
+          />
+        }
+    }
+  },
 
-  barStyle : {
-    backgroundColor : '#8b2938',
+
+  News : { screen : NewsNav ,
+    navigationOptions: {
+      tabBarIcon: () => {
+        return <Image
+          source={require('../../assets/newspaperIcon.png')}
+        style={{height:30,width:30,marginTop:-5}}
+          />
+
+    }
+
+  },
+}
+},{
+
+  initialRouteName : 'Home',
+
+  order : ['News' , 'Home' , 'Topic'],
+
+
+  },
+  {tabBarOptions: {
+    activeBackgroundColor: 'red', // Couleur d'arrière-plan de l'onglet sélectionné
+    inactiveBackgroundColor: 'green', // Couleur d'arrière-plan des onglets non sélectionnés
+    showLabel: false, // On masque les titres
+    showIcon: true // On informe le TabNavigator qu'on souhaite afficher les icônes définis
   }
+
+
 })
 
 const FirstActivityNav = createStackNavigator ({

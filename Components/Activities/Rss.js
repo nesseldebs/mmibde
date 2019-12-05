@@ -110,9 +110,8 @@ class Rss extends React.Component {
 
   render  () {
     return (
-    <ScrollView scrollEnabled= {true}>
     <ImageBackground source={require('../../assets/bg.jpg')} style={{width: '100%', height: '100%'}}>
-
+    <ScrollView scrollEnabled= {true}>
       <View style = { { flex : 1  , paddingTop : 10,} }>
         <Banner
           visible={this.state.visible}
@@ -163,8 +162,9 @@ class Rss extends React.Component {
           />
         </View>
       </View>
+      </ScrollView>
+
       </ImageBackground>
-    </ScrollView>
 
     );
   }

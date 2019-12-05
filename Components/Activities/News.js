@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View , FlatList , ActivityIndicator ,
-  Image , TextInput ,TouchableOpacity } from 'react-native';
+  Image ,TouchableOpacity } from 'react-native';
 
 import CardNews from '../Card_News.js'
 import NewsInfo from './News_Info.js'
-import {IconButton,Searchbar} from 'react-native-paper'
+import {IconButton,TextInput} from 'react-native-paper'
 
 import firebase from '../../Data/FireBase.js'
 
@@ -23,20 +23,14 @@ export default class New extends React.Component {
                 width: 50,
                 height: 50,
                 borderRadius: 100/2,
-                backgroundColor: 'orange',
+                backgroundColor: '#73c2eb',
            }
          }
          onPress = { () => this.props.navigation.navigate ("Post") }
          >
-              <IconButton icon="camera" style={ {
-
-                color:"white",
-                elevation:2,
-                fontSize:50,
-                alignItems:"center",
-                justifyContent:"center"
-               }
-             }/>
+              <Image source= { require ('../../assets/add.png') }
+                      style={{ height : 45 , width : 45, alignSelf:'center',marginTop:2 } }
+             />
 
           </TouchableOpacity>
         );
@@ -114,15 +108,15 @@ export default class New extends React.Component {
       const { firstQuery } = this.state;
 
       return (
-        <View style = { { flex : 1 } }>
+        <View style = { { flex : 1, margin:2 } }>
 
+        <TextInput mode="outlined"
+        placeholder="Search"
+        onChangeText={query => { console.log("text",query); this.setState({ firstQuery: query }); }}
+        value={firstQuery}
+        theme={{ colors: { placeholder: 'grey', text: 'black', primary: '#8f0114'}}}
 
-            <Searchbar
-            placeholder="Search"
-            onChangeText={query => { console.log("text",query); this.setState({ firstQuery: query }); }}
-            value={firstQuery}
-
-            />
+        />
 
             <FlatList
               data = { this.state.dataToUse  }

@@ -80,7 +80,7 @@ export default class SendComment extends React.Component {
              style = {sendCommentStyle.textInputStyle}
              selectionColor='grey'
              onChangeText = { (text) => {this.textTosend = text}}
-             theme={{ colors: { placeholder: 'grey', text: '#8f0114', primary: '#8f0114'}}}
+             theme={{ colors: { placeholder: 'grey', text: 'black', primary: '#8f0114'}}}
              mode="flat"
            />
          </View>

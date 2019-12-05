@@ -1,5 +1,7 @@
 import React from 'react'
-import { View , TextInput , Text , StyleSheet , Image , Button , TouchableOpacity} from 'react-native'
+import { View  , Text , StyleSheet , Image ,  TouchableOpacity} from 'react-native'
+import {TextInput,Button} from 'react-native-paper'
+
 
 import firebase from '../../Data/FireBase.js'
 //import ImagePicker from 'react-native-image-picker'
@@ -97,50 +99,40 @@ export default class PosNews extends React.Component {
 
   render () {
     return (
+
       <View style = {sendStyle.container}>
+
         <View style = {sendStyle.titreView}>
           <Text style = {sendStyle.titreStyle}>News</Text>
         </View>
 
         <View style = {sendStyle.subView}>
 
-        <View style = {sendStyle.subTitleView} >
-          <Text style = {sendStyle.titreStyle} > Titre </Text>
-        </View>
-        <View style = {{borderBottomWidth : 1 }}>
+          <View style = {{borderBottomWidth : 1 }}>
+              <TextInput
+                label ='Titre News ...'
+                selectionColor='grey'
+                style = {sendStyle.textInputStyle}
+                onChangeText = { (text) => { this.titre = text } }
+                theme={{ colors: { placeholder: 'grey', text: 'black', primary: '#8f0114'}}}
+                mode="flat"
+                placeholderTextColor="#ffffffDD"
+              />
+
+          </View>
+
+          <View style = {{borderBottomWidth : 1 , marginBottom : 10}}>
             <TextInput
-              placeholder ='Titre du Topic ...'
+              label ='Description ...'
+              selectionColor='grey'
               style = {sendStyle.textInputStyle}
-              onChangeText = { (text) => {
-
-                  this.titre = text;
-               } }
-            />
-        </View>
-
-          <View style = {sendStyle.subTitleView}>
-            <Text style = {sendStyle.titreStyle} > Description </Text>
-          </View>
-
-          <View style = { { borderBottomWidth : 1 , marginBottom : 20 } }>
-            <TextInput
-              placeholder ='Description de la news ...'
-              style = {sendStyle.multilineStyle}
-              multiline = { true  }
-              editable = { true }
-              onChangeText = { (text) => {
-                this.description = text;
-              } }
+              onChangeText = { (text) => {this.description = text}}
+              theme={{ colors: { placeholder: 'grey', text: 'black', primary: '#8f0114'}}}
+              mode="flat"
+              placeholderTextColor="#ffffffDD"
             />
           </View>
-          <View>
-          <View style = { { marginBottom : 20 } }>
-            <Button
-              title = 'Send News'
-              color = '#8b2938'
-              onPress = { () => this.pushData() }
-            />
-          </View>
+
           <TouchableOpacity
                 style = { { width : '100%' , alignItems : 'flex-end' } }
               //  onPress = { () => this.openImagePicker() }
@@ -150,9 +142,20 @@ export default class PosNews extends React.Component {
               style = { { height : 34 , width : 34 , marginBottom : 10} }
             />
           </TouchableOpacity>
+
+          <View style = { { marginBottom : 20 } }>
+            <Button
+              color='#8f0114'
+              onPress = {() => {this.sendTopic ()}}
+              mode="outlined"
+
+            >Send News</Button>
+          </View>
+
         </View>
-        </View>
+
       </View>
+
     )
   }
 }
@@ -167,18 +170,19 @@ const sendStyle =StyleSheet.create ({
     subView : {
 
       width : '85%',
-      backgroundColor : '#e6e8e8',
+    //  backgroundColor : '#e6e8e8',
       flexDirection : 'column',
       justifyContent : 'center',
       borderRadius : 3,
       elevation : 3,
       paddingLeft : 20,
       paddingRight : 20,
+      marginTop:15
     },
     titreView : {
       width : '50%',
       height : 35,
-      backgroundColor : '#dae8e6',
+    //  backgroundColor : '#dae8e6',
       justifyContent : 'center',
       alignItems : 'center',
       borderRadius : 3,
@@ -187,7 +191,7 @@ const sendStyle =StyleSheet.create ({
       marginBottom : 10,
     },
     titreStyle : {
-
+      color:'#8f0114',
       fontSize : 25,
       fontWeight : 'bold',
     },
@@ -198,6 +202,8 @@ const sendStyle =StyleSheet.create ({
     },
     textInputStyle : {
       paddingLeft : 3,
+      color:'white',
+      backgroundColor:'transparent'
     },
     multilineStyle : {
       height : 100

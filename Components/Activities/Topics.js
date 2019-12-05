@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View , FlatList , Dimensions , TouchableOpacity  , ActivityIndicator , TextInput} from 'react-native';
+import { StyleSheet, Text, View , FlatList , Dimensions , TouchableOpacity  , ActivityIndicator ,Image} from 'react-native';
 
-import {IconButton, Searchbar,FAB} from 'react-native-paper'
+import { TextInput } from 'react-native-paper'
 
 import CardTopic from "../Card_Topic.js"
 import firebase from '../../Data/FireBase.js'
@@ -72,11 +72,11 @@ export default class Topics extends React.Component {
       return (
         <View style = {topicsStyle.container} >
 
-        <Searchbar
+        <TextInput mode="outlined"
         placeholder="Search"
         onChangeText={query => { console.log("text",query); this.setState({ firstQuery: query }); }}
         value={firstQuery}
-
+        theme={{ colors: { placeholder: 'grey', text: 'black', primary: '#8f0114'}}}
         />
 
           <FlatList
@@ -84,11 +84,27 @@ export default class Topics extends React.Component {
             keyExtractor = {(item) => item.id.toString()}
             renderItem = {({item}) => <CardTopic item = {item} navigateToAnwser = { this.idToLoad } exposition = {false} />}
           />
-        <FAB
-            onPress = {() => {this.props.navigation.navigate ("SendCard" , { id : 1 , sentence : 'coucou'})}}
-            icon="add"
-            style={topicsStyle.icon}
-        />
+
+
+          <TouchableOpacity style = {
+            {
+                position : 'absolute',
+                bottom : 10 ,
+                right :10,
+                width: 50,
+                height: 50,
+                borderRadius: 100/2,
+                backgroundColor: '#73c2eb',
+           }
+         }
+         onPress = {() => {this.props.navigation.navigate ("SendCard" , { id : 1 , sentence : 'coucou'})}}
+         >
+              <Image source= { require ('../../assets/add.png') }
+                      style={{ height : 45 , width : 45, alignSelf:'center',marginTop:2 } }
+             />
+
+          </TouchableOpacity>
+
       </View>
       );
     }
@@ -100,6 +116,7 @@ export default class Topics extends React.Component {
 const topicsStyle = StyleSheet.create({
   container: {
     flex: 1,
+    margin:2
   },
   Vue:{
     marginTop:25,

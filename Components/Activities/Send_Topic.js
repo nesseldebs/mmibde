@@ -78,8 +78,8 @@ class SendTopic extends React.Component {
               selectionColor='grey'
               style = {sendStyle.textInputStyle}
               onChangeText = { (text) => {this.titreTextVar = text}}
-              theme={{ colors: { placeholder: 'grey', text: '#8f0114', primary: '#8f0114'}}}
-              mode="outlined"
+              theme={{ colors: { placeholder: 'grey', text: 'black', primary: '#8f0114'}}}
+              mode="flat"
               placeholderTextColor="#ffffffDD"
 
             />
@@ -94,7 +94,7 @@ class SendTopic extends React.Component {
               style = {sendStyle.textInputStyle}
               onChangeText = { (text) => {this.questionTextVar = text}}
               theme={{ colors: { placeholder: 'grey', text: 'black', primary: '#8f0114'}}}
-              mode="outlined"
+              mode="flat"
               placeholderTextColor="#ffffffDD"
 
             />
